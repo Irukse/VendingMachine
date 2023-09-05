@@ -1,0 +1,21 @@
+version: '3.7'
+services:
+  db:
+    container_name: pg_container_vending_machine
+    image: postgres:12
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: vendingMachine
+    ports:
+      - "5433:5432"
+  pgadmin:
+    container_name: pgadmin4_container_vending_machine
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    ports:
+      - "5050:80"
