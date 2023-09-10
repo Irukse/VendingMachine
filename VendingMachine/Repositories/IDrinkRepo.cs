@@ -12,6 +12,13 @@ public interface IDrinkRepo
     public Task AddDrink(Drink drinkRequest);
 
     /// <summary>
+    /// Get drink
+    /// </summary>
+    /// <param name="title"></param>
+    /// <returns></returns>
+    public Task<Drink> GetDrink(string title);
+
+    /// <summary>
     ///     Update drink price
     /// </summary>
     /// <param name="title"></param>

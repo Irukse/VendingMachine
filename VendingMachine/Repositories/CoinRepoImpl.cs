@@ -1,3 +1,4 @@
+using System.Security.Cryptography.Xml;
 using VendingMachine.Enums;
 using VendingMachine.Models.Entity;
 
@@ -26,5 +27,18 @@ public class CoinRepoImpl : ICoinRepo
         coin.IsAvailable = isAvailable;
         await _context.SaveChangesAsync();
         return coin;
+    }
+    
+    public List<Coin> GetCoinAvailable()
+    {
+        var coins = _context.Coins.Where(coins => coins.IsAvailable == true).ToList();
+        return coins;
+    }
+    
+    public int GetCoin(int coin)
+    {
+        var coins = _context.Coins.FirstOrDefault(x => x.Nominal == coin) ?? throw new Exception($"");
+        var amount = coins.Storage;
+        return amount;
     }
 }

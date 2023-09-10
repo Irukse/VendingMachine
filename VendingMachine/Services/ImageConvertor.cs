@@ -4,13 +4,14 @@ namespace VendingMachine.Services;
 
 public static class ImageConvertor
 {
-    public static string ConvertImageToBase(string path)
+    public static byte[] ReadImage(string path)
     {
-        return Convert.ToBase64String(File.ReadAllBytes(path));
+        var image = File.ReadAllBytes(path);
+        return image;
     }
-    
-    public static Image ConvertToImage(string base64)
+
+    public static void WriteImage(string path, string name, byte[] image)
     {
-        return Image.FromStream(new MemoryStream(Convert.FromBase64String(base64)));
+        File.WriteAllBytes($"{path}\\{name}", image);
     }
 }

@@ -20,4 +20,17 @@ public interface ICoinRepo
     /// <param name="isAvailable"></param>
     /// <returns></returns>
     public Task<Coin> UpdateCoinAvailable(int coinNominal, bool isAvailable);
+
+    /// <summary>
+    ///     Show available coins
+    /// </summary>
+    /// <returns></returns>
+    public List<Coin> GetCoinAvailable();
+
+    /// <summary>
+    ///     Number of coins
+    /// </summary>
+    /// <param name="coin"></param>
+    /// <returns></returns>
+    public int GetCoin(int coin);
 }

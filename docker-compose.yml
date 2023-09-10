@@ -11,7 +11,7 @@ services:
     ports:
       - "5433:5432"
   pgadmin:
-    container_name: pgadmin4_container_vending_machine
+    container_name: pgadmin4_containers
     image: dpage/pgadmin4
     restart: always
     environment:

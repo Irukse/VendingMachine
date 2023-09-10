@@ -23,7 +23,12 @@ public class DrinkDto
     public bool IsAvailable { get; set; }
     
     /// <summary>
-    ///     Image
+    ///     ImageUrl
     /// </summary>
     public string ImageUrl { get; set; }
+
+    /// <summary>
+    ///     ImageUrl
+    /// </summary>
+    public string ImageNotAvailableUrl { get; set; }
 }

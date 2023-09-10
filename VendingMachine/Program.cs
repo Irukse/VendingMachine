@@ -1,17 +1,20 @@
 using Microsoft.EntityFrameworkCore;
 using VendingMachine;
+using VendingMachine.Configurations;
 using VendingMachine.Repositories;
 using VendingMachine.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.Configure<StorageConfigurations>(builder.Configuration.GetRequiredSection(StorageConfigurations.SectionName));
 builder.Services.AddControllersWithViews();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<ICoinRepo, CoinRepoImpl>();
 builder.Services.AddScoped<IDrinkRepo, DrinkRepoImpl>();
 builder.Services.AddScoped<CoinService>();
 builder.Services.AddScoped<DrinkService>();
+builder.Services.AddScoped<UserService>();
 builder.Services.AddDbContext<RepositoryContext>(
     o => o.UseNpgsql(builder.Configuration.GetConnectionString("VendingMachineDB")));
 

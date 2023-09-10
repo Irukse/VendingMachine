@@ -21,11 +21,19 @@ public class DrinkRepoImpl : IDrinkRepo
             Amount = drinkRequest.Amount,
             Price = drinkRequest.Price,
             IsAvailable = drinkRequest.IsAvailable,
-            Image = drinkRequest.Image,
+            ImageUrl = drinkRequest.ImageUrl,
+            ImageNotAvailableUrl = drinkRequest.ImageNotAvailableUrl
         };
 
         await _context.Drinks.AddAsync(movie);
         await _context.SaveChangesAsync();
+    }
+    
+    public async Task<Drink> GetDrink(string title)
+    {
+        var drink = _context.Drinks.FirstOrDefault(x => x.Title == title) ?? throw new Exception($"drink : {title} is not exist");
+
+        return drink;
     }
 
     public async Task<Drink> UpdateDrinkPrice(string title, decimal price)
@@ -48,10 +56,10 @@ public class DrinkRepoImpl : IDrinkRepo
         return drink;
     }
 
-    public async Task<Drink> UpdateDrinkImage(string title, string image)
+    public async Task<Drink> UpdateDrinkImage(string title, string imageUrl)
     {
         var drink = _context.Drinks.FirstOrDefault(x => x.Title == title) ?? throw new Exception($"drink : {title} is not exist");
-        drink.Image = image;
+        drink.ImageUrl = imageUrl;
         await _context.SaveChangesAsync();
         return drink;
     }

@@ -1,4 +1,5 @@
 using VendingMachine.Enums;
+using VendingMachine.Models.Entity;
 using VendingMachine.Repositories;
 
 namespace VendingMachine.Services;
@@ -11,7 +12,7 @@ public class CoinService
     {
         _repository = repository;
     }
-    
+
     public async Task<bool> UpdateCoinAmount(int coinNominal, int amount)
     {
         if (Enum.IsDefined(typeof(CoinNominal), coinNominal))
@@ -19,7 +20,7 @@ public class CoinService
             await _repository.UpdateCoinAmount(coinNominal, amount);
             return true;
         }
-        
+
         return false;
     }
 
@@ -32,5 +33,15 @@ public class CoinService
         }
 
         return false;
+    }
+
+    public List<Coin> GetCoinAvailable()
+    {
+        return _repository.GetCoinAvailable();
+    }
+    
+    public int GetCoin(int coin)
+    {
+        return _repository.GetCoin(coin);
     }
 }
